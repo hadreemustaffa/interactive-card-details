@@ -19,18 +19,21 @@
 
 <body>
   <main>
-    <div class="container">
+    <picture>
+      <source media="(min-width: 992px)" srcset="./images/bg-main-desktop.png">
       <img src="./images/bg-main-mobile.png" alt="" class="container__bg">
+    </picture>
+    <div class="container">
       <div class="container__card">
-        <img src="./images/bg-card-back.png" alt="back view of a credit card">
-        <p class="container__card__back-cvc">000</p>
+        <img class="container__card-bg" src="./images/bg-card-back.png" alt="back view of a credit card">
+        <p class="container__card-cvc">000</p>
       </div>
       <div class="container__card">
-        <img src="./images/bg-card-front.png" alt="front view of a credit card">
+        <img class="container__card-bg" src="./images/bg-card-front.png" alt="front view of a credit card">
         <div class="container__card__details">
           <img src="./images/card-logo.svg" alt="" class="container__card__details-logo">
           <p class="container__card__details-number">0000 0000 0000 0000</p>
-          <div class="container__card__details-container">
+          <div class="container__card__details-subcontainer">
             <p class="container__card__details__name">JANE APPLESEED</p>
             <p class="container__card__details__date">00/00</p>
           </div>
@@ -38,43 +41,39 @@
       </div>
     </div>
 
-    <form id="details-form" class="container" action="#">
+    <form id="details-form" action="#">
       <div class="form__input-group">
         <label for="cardholder-name">Cardholder Name</label>
-        <input type="text" name="cardholder-name" id="cardholderName" placeholder="e.g. Jane Appleseed">
+        <input type="text" name="cardholder-name" id="cardholderName" placeholder="e.g. Jane Appleseed" required>
       </div>
+
       <div class="form__input-group">
         <label for="card-number">CARD NUMBER</label>
-        <input type="number" name="cardholder-name" id="cardholderName" maxlength="16"
-          placeholder="e.g. 1234 5678 9123 0000">
+        <input type="number" name="card-number" id="cardNumber" placeholder="e.g. 1234 5678 9123 0000" required>
       </div>
+
+      <fieldset class="form__input-group">
+        <legend>Exp. Date (MM/YY)</legend>
+        <input type="number" name="month" id="month" min="1" max="12" placeholder="MM" required>
+        <input type="number" name="year" id="year" min="1" max="99" placeholder="YY" required>
+      </fieldset>
+
       <div class="form__input-group">
-        <fieldset>
-          <legend>Exp. Date (MM/YY)</legend>
-          <input type="number" name="month" id="month" min="1" max="12" maxlength="2" placeholder="MM">
-          <input type="number" name="year" id="year" min="1" max="99" maxlength="2" placeholder="YY">
-        </fieldset>
-        <div class="form__input-group cvc">
-          <label for="cvc">CVC</label>
-          <input type="number" name="cvc" id="cvc" maxlength="3" placeholder="e.g. 123">
-        </div>
+        <label for="cvc">CVC</label>
+        <input type="number" name="cvc" id="cvc" pattern="([0-9]|[0-9]|[0-9])" max="999" placeholder="e.g. 123"
+          required>
       </div>
       <input id="submitBtn" type="submit" value="Confirm" />
     </form>
 
     <!-- Completed state start -->
-    <div class="container" hidden>
+    <div hidden>
       <img src="./images/icon-complete.svg" alt="">
       <h1>THANK YOU!</h1>
       <p>We've added your card details</p>
       <button id="continueBtn" type="button">Continue</button>
     </div>
   </main>
-
-  <footer class="attribution">
-    <p>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</p>
-    <p>Coded by <a href="#">Hadree Mustaffa</a>.</p>
-  </footer>
 
   <script src="index.js"></script>
 </body>
