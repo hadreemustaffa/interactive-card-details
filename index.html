@@ -30,12 +30,14 @@
       </div>
       <div class="container__card">
         <img class="container__card-bg" src="./images/bg-card-front.png" alt="front view of a credit card">
-        <div class="container__card__details">
-          <img src="./images/card-logo.svg" alt="" class="container__card__details-logo">
-          <p class="container__card__details-number">0000 0000 0000 0000</p>
-          <div class="container__card__details-subcontainer">
-            <p class="container__card__details__name">JANE APPLESEED</p>
-            <p class="container__card__details__date">00/00</p>
+        <div class="container__card-details">
+          <img src="./images/card-logo.svg" alt="" class="container__card-logo">
+          <p class="container__card-number">0000 0000 0000 0000</p>
+          <div class="container__card-subcontainer">
+            <p class="container__card-name">JANE APPLESEED</p>
+            <p class="container__card-date">
+              <span id="dateMonth">00</span>/<span id="dateYear">00</span>
+            </p>
           </div>
         </div>
       </div>
@@ -43,31 +45,39 @@
 
     <form id="details-form" action="#">
       <div class="form__input-group">
-        <label for="cardholder-name">Cardholder Name</label>
-        <input type="text" name="cardholder-name" id="cardholderName" placeholder="e.g. Jane Appleseed" required>
+        <label for="cardholderName">Cardholder Name</label>
+        <input type="text" name="Name" id="cardholderName" placeholder="e.g. Jane Appleseed" required>
+        <p class="error-message"></p>
       </div>
 
       <div class="form__input-group">
-        <label for="card-number">CARD NUMBER</label>
-        <input type="number" name="card-number" id="cardNumber" placeholder="e.g. 1234 5678 9123 0000" required>
+        <label for="cardNumber">Card Number</label>
+        <input type="text" name="Number" id="cardNumber" inputmode="numeric" pattern="[0-9]{16}"
+          placeholder="e.g. 1234 5678 9123 0000" min="16" max="16" required>
+        <p class="error-message"></p>
       </div>
 
       <fieldset class="form__input-group">
         <legend>Exp. Date (MM/YY)</legend>
-        <input type="number" name="month" id="month" min="1" max="12" placeholder="MM" required>
-        <input type="number" name="year" id="year" min="1" max="99" placeholder="YY" required>
+        <div class="form__input-wrapper">
+          <label for="month" class="sr-only">Month</label>
+          <input type="number" name="month" id="month" min="1" max="12" placeholder="MM" required>
+          <label for="year" class="sr-only">Year</label>
+          <input type="number" name="year" id="year" placeholder="YY" required>
+        </div>
+        <p class="error-message"></p>
       </fieldset>
 
       <div class="form__input-group">
         <label for="cvc">CVC</label>
-        <input type="number" name="cvc" id="cvc" pattern="([0-9]|[0-9]|[0-9])" max="999" placeholder="e.g. 123"
-          required>
+        <input type="number" name="cvc" id="cvc" max="999" placeholder="e.g. 123" required>
+        <p class="error-message"></p>
       </div>
-      <input id="submitBtn" type="submit" value="Confirm" />
+      <input id="submitBtn" type="submit" value="Confirm">
     </form>
 
     <!-- Completed state start -->
-    <div hidden>
+    <div class="thank-you-message">
       <img src="./images/icon-complete.svg" alt="">
       <h1>THANK YOU!</h1>
       <p>We've added your card details</p>
