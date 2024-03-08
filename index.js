@@ -1,6 +1,8 @@
 const validateForm = (formSelector) => {
   const formElement = document.querySelector(formSelector);
   const inputYear = document.querySelector('#year');
+  const inputCardNumber = document.querySelector('#cardNumber');
+  const displayCardNumber = document.querySelector('.container__card-number');
 
   inputYear.setAttribute('min', getCurrentYear());
 
@@ -10,18 +12,9 @@ const validateForm = (formSelector) => {
   }
   const validationOptions = [
     {
-      attribute: 'data-maxlength',
-      isValid: (input) =>
-        input.value &&
-        input.value.length <=
-          parseInt(input.getAttribute('data-maxLength'), 10),
-      errorMessage: (input, label) =>
-        `${label.textContent} must be less than ${input.getAttribute(
-          'data-maxlength'
-        )} characters`,
-    },
-    {
-      attribute: '',
+      attribute: 'data-card-number',
+      isValid: (input) => input.value.replace(/\s+/g, '').length == 16,
+      errorMessage: () => `Card numbers must be 16 digits`,
     },
     {
       attribute: 'required',
@@ -34,7 +27,6 @@ const validateForm = (formSelector) => {
     const input = formGroup.querySelector('input');
     const errorContainer = formGroup.querySelector('.error-message');
 
-    console.log(formGroup);
     let formGroupError = false;
     for (const option of validationOptions) {
       if (input.hasAttribute(option.attribute) && !option.isValid(input)) {
@@ -47,8 +39,23 @@ const validateForm = (formSelector) => {
 
     if (!formGroupError) {
       errorContainer.textContent = '';
+      input.classList.remove('error');
     }
   };
+
+  inputCardNumber.addEventListener('input', (e) => {
+    let input = e.target.value.replace(/\D/g, '');
+    input = input.slice(0, 16);
+
+    input = input.replace(/(\d{4})/g, '$1 ').trim();
+
+    e.target.value = input;
+    if (input != '') {
+      displayCardNumber.textContent = input;
+    } else {
+      displayCardNumber.textContent = '0000 0000 0000 0000';
+    }
+  });
 
   formElement.setAttribute('novalidate', '');
 

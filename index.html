@@ -52,8 +52,8 @@
 
       <div class="form__input-group">
         <label for="cardNumber">Card Number</label>
-        <input type="text" name="Number" id="cardNumber" inputmode="numeric" pattern="[0-9]{16}"
-          placeholder="e.g. 1234 5678 9123 0000" min="16" max="16" required>
+        <input type="text" name="Number" id="cardNumber" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000"
+          data-card-number required>
         <p class="error-message"></p>
       </div>
 
@@ -63,14 +63,14 @@
           <label for="month" class="sr-only">Month</label>
           <input type="number" name="month" id="month" min="1" max="12" placeholder="MM" required>
           <label for="year" class="sr-only">Year</label>
-          <input type="number" name="year" id="year" placeholder="YY" required>
+          <input type="number" name="year" id="year" placeholder="YY" data-card-year required>
         </div>
         <p class="error-message"></p>
       </fieldset>
 
       <div class="form__input-group">
         <label for="cvc">CVC</label>
-        <input type="number" name="cvc" id="cvc" max="999" placeholder="e.g. 123" required>
+        <input type="number" name="cvc" id="cvc" placeholder="e.g. 123" data-card-cvc required>
         <p class="error-message"></p>
       </div>
       <input id="submitBtn" type="submit" value="Confirm">
