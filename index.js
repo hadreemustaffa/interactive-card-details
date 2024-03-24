@@ -110,6 +110,7 @@ formElement.addEventListener('input', (e) => {
 
   if (e.target == inputCardholderName) {
     let input = e.target.value.replace(/\d/g, '');
+    input = input.slice(0, 32);
     e.target.value = input;
     displayCardDetails(
       input.toUpperCase(),
